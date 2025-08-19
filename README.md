@@ -1,4 +1,4 @@
-Multi-Agent Email Outreach System
+## Multi-Agent Email Outreach System
 This project is a Python-based multi-agent system designed to automate personalized cold email outreach. It sources leads from a Google Sheet, uses Google's Gemini LLM to personalize emails, sends an initial email, and manages a single follow-up if no reply is received within a specified timeframe.
 
 ## Features
