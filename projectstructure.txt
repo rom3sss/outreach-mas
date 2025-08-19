@@ -1,0 +1,19 @@
+﻿multi_agent_outreach/ 
+
+
+├── agents/ 
+   ├── __init__.py │ 
+    ├── orchestrator.py │ 
+     ├── lead_gen_agent.py │ 
+      ├── email_crafting_agent.py │ 
+       ├── sending_agent.py │ 
+        └── follow_up_agent.py 
+├── database/ 
+    └── lead_status.json 
+├── utils/ │ 
+     ── __init__.py │ 
+   └── google_api_clients.py 
+├── main.py 
+├── .env
+├── requirements.txt 
+└── credentials.json
