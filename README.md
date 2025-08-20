@@ -1,52 +1,97 @@
-## Multi-Agent Email Outreach System
-This project is a Python-based multi-agent system designed to automate personalized cold email outreach. It sources leads from a Google Sheet, uses Google's Gemini LLM to personalize emails, sends an initial email, and manages a single follow-up if no reply is received within a specified timeframe.
+# Multi-Agent Email Outreach System
 
-## Features
-Automated Lead Sourcing: Fetches lead data directly from a Google Sheet.
+A Python-based multi-agent system designed to automate personalized cold email outreach. The system sources leads from Google Sheets, uses Google's Gemini LLM for personalization, sends initial emails, and manages intelligent follow-ups.
 
-LLM-Powered Personalization: Uses Google Gemini to craft natural and relevant follow-up messages.
+## 🌟 Features
 
-Stateful Lead Management: Tracks the status of each lead (PENDING, INITIAL_EMAIL_SENT, REPLIED, etc.) in a simple JSON database.
+- **Automated Lead Sourcing**: Fetches lead data directly from Google Sheets with validation
+- **LLM-Powered Personalization**: Uses Google Gemini for natural follow-up messages
+- **Stateful Lead Management**: Tracks lead status with comprehensive logging
+- **Intelligent Follow-up Logic**: Checks for replies and sends follow-ups after configurable delays
+- **Modular Architecture**: Five specialized agents orchestrated by a central coordinator
+- **Robust Error Handling**: Comprehensive logging and graceful error recovery
+- **Type Safety**: Full type hints for better code maintainability
 
-Automated Follow-up Logic: Intelligently checks for replies via the Gmail API and sends a follow-up email after a configurable delay (e.g., 48 hours).
+## 🏗️ System Architecture
 
-Modular Architecture: Built with five distinct agents, each with a specific role, orchestrated by a central coordinator.
+The system uses a multi-agent architecture with the following components:
 
-Secure Configuration: Manages all sensitive keys and settings through a .env file.
+- **OrchestratorAgent**: Central coordinator managing workflow and state
+- **LeadGenerationAgent**: Fetches and validates leads from Google Sheets
+- **EmailCraftingAgent**: Creates personalized emails using templates and LLM
+- **SendingAgent**: Handles email delivery via Gmail API
+- **FollowUpAgent**: Manages reply detection and follow-up timing
 
-## System Architecture
-The system operates on a multi-agent model where a central OrchestratorAgent coordinates the workflow between specialized agents:
-
-OrchestratorAgent: The brain of the operation. Manages the overall workflow, state, and data flow between other agents.
-
-LeadGenerationAgent: Connects to Google Sheets to source and structure lead information.
-
-EmailCraftingAgent: Uses the Gemini LLM to draft personalized follow-up emails.
-
-SendingAgent: Dispatches emails using the Gmail API.
-
-FollowUpAgent: Monitors for replies and determines when a follow-up should be sent.
-
-## Setup and Installation
-Follow these steps to get the system up and running.
+## 🚀 Quick Start
 
 ### 1. Prerequisites
-Python 3.10 or higher.
 
-A Google account with Gmail and Google Drive (for Sheets) enabled.
+- Python 3.8 or higher
+- Google account with Gmail and Google Sheets access
+- Google Cloud Project with APIs enabled
 
-### 2. Project Setup
-Clone or Download: Get the code and place it in a local directory.
+### 2. Installation
 
-File Structure: Ensure your project has the required file structure, including the agents/, database/, and utils/ directories.
+```bash
+# Clone the repository
+git clone <repository-url>
+cd outreach-mas
 
-Install Dependencies: Open your terminal in the project root and run:
+# Run the setup script
+python setup.py
 
-Bash
-
+# Or manually install dependencies
 pip install -r requirements.txt
-### 3. Google Cloud Authentication
-This is the most critical setup step. This process allows the script to securely access your Google account.
+```
+
+### 3. Configuration
+
+1. **Set up Google Cloud credentials**:
+   - Download `credentials.json` from your Google Cloud Console
+   - Place it in the project root directory
+
+2. **Configure environment variables**:
+   ```bash
+   # Copy the template and edit with your values
+   cp .env.template .env
+   # Edit .env with your actual configuration
+   ```
+
+3. **Prepare your Google Sheet**:
+   - Create a sheet with columns: First Name, Last Name, Email, Company, Title, Industry
+   - Share the sheet with your service account email
+
+### 4. Run the System
+
+```bash
+python main.py
+```
+
+## 📁 Project Structure
+
+```
+outreach-mas/
+├── agents/
+│   ├── __init__.py
+│   ├── orchestrator.py          # Central coordinator
+│   ├── lead_gen_agent.py        # Lead sourcing and validation
+│   ├── email_crafting_agent.py  # Email creation with LLM
+│   ├── sending_agent.py         # Email delivery
+│   └── follow_up_agent.py       # Reply detection and timing
+├── utils/
+│   ├── __init__.py
+│   └── google_api_clients.py    # Google API utilities
+├── database/
+│   └── lead_status.json         # Lead state persistence
+├── logs/                        # Application logs
+├── main.py                      # Application entry point
+├── config.py                    # Configuration management
+├── setup.py                     # Setup and validation script
+├── requirements.txt             # Dependencies
+├── .env                         # Environment variables
+├── .gitignore                   # Git ignore rules
+└── README.md                    # This file
+```
 
 Create a Google Cloud Project: Go to the Google Cloud Console and create a new project.
 

@@ -1,5 +1,18 @@
-﻿google-api-python-client 
-google-auth-httplib2 
-google-auth-oauthlib 
-google-generativeai 
-python-dotenv
+﻿# Google API dependencies
+google-api-python-client>=2.0.0
+google-auth-httplib2>=0.1.0
+google-auth-oauthlib>=0.5.0
+
+# Google Cloud BigQuery
+google-cloud-bigquery>=3.0.0
+
+# Google Generative AI (Gemini)
+google-generativeai>=0.3.0
+
+# Environment management
+python-dotenv>=1.0.0
+
+# Optional: Development dependencies
+# pytest>=7.0.0
+# black>=22.0.0
+# flake8>=5.0.0
